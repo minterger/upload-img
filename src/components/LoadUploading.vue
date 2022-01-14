@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-sm w-full p-5 rounded-lg bg-white shadow-lg md:p-8"
+    class="max-w-sm w-full p-5 rounded-xl bg-white shadow-lg md:p-8"
   >
   <h1 class="mt-3 mb-3 text-xl">Uploading...</h1>
   <div class="rounded-lg bg-slate-50 w-full h-2 overflow-hidden">

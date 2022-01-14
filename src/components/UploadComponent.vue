@@ -21,7 +21,11 @@ const uploadButtonImg = (e) => {
 
 const dropFile = (e) => {
   file.value = e.dataTransfer.files[0];
-  uploadImg();
+  if (file.value) {
+    uploadImg();
+  } else {
+    dropzoneIsActive.value = false;
+  }
 };
 
 const uploadImg = () => {
@@ -49,7 +53,7 @@ const uploadImg = () => {
 
 <template>
   <div
-    class="max-w-sm w-full p-5 rounded-lg bg-white shadow-lg flex items-center flex-col md:p-8"
+    class="max-w-sm w-full p-5 rounded-xl bg-white shadow-lg flex items-center flex-col md:p-8"
   >
     <h1 class="mt-3 mb-3 text-xl">Upload your image</h1>
     <span class="text-xs mt-2 mb-2 text-slate-600"
@@ -60,7 +64,7 @@ const uploadImg = () => {
       @dragleave.prevent="toggleDrag()"
       @dragover.prevent=""
       @drop.prevent="dropFile"
-      class="border border-blue-500 border-dashed rounded-lg w-full h-52 flex items-center flex-col mt-4 bg-slate-50 transition-all duration-200"
+      class="border border-blue-500 border-dashed rounded-xl w-full h-52 flex items-center flex-col mt-4 bg-slate-50 transition-all duration-200"
       :class="{
         'bg-blue-500 border-solid': dropzoneIsActive,
       }"
@@ -77,7 +81,7 @@ const uploadImg = () => {
     <span class="text-sm text-slate-500 mt-4 mb-4">Or</span>
     <label
       for="file"
-      class="py-1 px-3 rounded-lg text-white bg-blue-600 hover:bg-blue-500 transition-colors shadow"
+      class="px-3 py-2 text-sm text-white rounded-lg bg-blue-600 hover:bg-blue-500 transition-colors shadow"
     >
       Choose a File
       <input
