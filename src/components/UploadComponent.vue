@@ -33,7 +33,8 @@ const uploadImg = () => {
     const formData = new FormData();
     formData.append("image", file.value);
     isUploadActive.value = true;
-    axios.post("https://api.imgbb.com/1/upload?key=45f666aa12a2edd235f9e6bf8378d22d", formData)
+    // axios.post("https://api.imgbb.com/1/upload?key=45f666aa12a2edd235f9e6bf8378d22d", formData)
+    axios.post(import.meta.env.VITE_URL_API + "/upload", formData)
       .then((res) => {
         dataImg.value = res.data;
         isUploadActive.value = false;
