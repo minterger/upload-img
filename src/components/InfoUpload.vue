@@ -35,7 +35,7 @@ const copyButton = () => {
       </button>
       <input
         type="text"
-        class="rounded-lg border border-slate-300 w-full h-10 pl-2 text-xs text-slate-700"
+        class="rounded-lg border border-slate-300 w-full h-10 pl-2 text-xs text-slate-700 focus:outline-blue-500"
         :value="dataImg.data.url"
         ref="inputRef"
         readonly

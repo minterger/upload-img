@@ -15,10 +15,10 @@
 }
 
 @keyframes loading {
-  0% {
+  from {
     transform: translateX(-100%);
   }
-  100% {
+  to {
     transform: translateX(300%);
   }
 }

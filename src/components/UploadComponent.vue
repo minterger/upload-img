@@ -65,10 +65,10 @@ const uploadImg = () => {
       @dragleave.prevent="toggleDrag()"
       @dragover.prevent=""
       @drop.prevent="dropFile"
-      class="border border-blue-500 border-dashed rounded-xl w-full h-52 flex items-center flex-col mt-4 bg-slate-50 transition-all duration-200"
+      class="outline-blue-500 outline-2 outline-offset-0 rounded-xl w-full h-52 flex items-center flex-col mt-4 bg-slate-50 transition-all duration-200"
       :class="{
-        'bg-blue-500 border-solid': dropzoneIsActive,
-      }"
+        'bg-blue-500 outline': dropzoneIsActive,
+      }, [dropzoneIsActive ? 'outline' : 'outline-dashed']"
     >
       <img src="../assets/image.svg" class="mt-7 mb-7" alt="" />
       <span
