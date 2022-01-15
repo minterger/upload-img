@@ -24,7 +24,7 @@ const copyButton = () => {
     <h1 class="text-xl mt-2 mb-2">Upload Successfully!</h1>
     <img
       class="rounded-xl w-full h-52 flex items-center flex-col mt-4 bg-slate-50 transition-all duration-200 object-cover hover:object-contain"
-      :src="dataImg.url"
+      :src="dataImg.data.url"
     />
     <label class="w-full mt-5 relative">
       <button
@@ -36,7 +36,7 @@ const copyButton = () => {
       <input
         type="text"
         class="rounded-lg border border-slate-300 w-full h-10 pl-2 text-xs text-slate-700"
-        :value="dataImg.url"
+        :value="dataImg.data.url"
         ref="inputRef"
         readonly
       />
