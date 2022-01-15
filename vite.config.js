@@ -7,7 +7,7 @@ export default defineConfig({
     template: {
       compilerOptions: {
         // treat all tags with a dash as custom elements
-        isCustomElement: name => name.startsWith('box-'),
+        isCustomElement: name => name.match('box-icon'),
       }
     }
   })]
