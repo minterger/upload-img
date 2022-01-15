@@ -1,11 +1,11 @@
 <script setup>
-import axios from 'axios';
+import axios from "axios";
 import { ref } from "@vue/reactivity";
 import { inject } from "@vue/runtime-core";
 
-const isUploadActive = inject('isUploadActive');
-const isUploadFinished = inject('isUploadFinished');
-const dataImg = inject('dataImg');
+const isUploadActive = inject("isUploadActive");
+const isUploadFinished = inject("isUploadFinished");
+const dataImg = inject("dataImg");
 
 const dropzoneIsActive = ref(false);
 const file = ref(null);
@@ -33,8 +33,12 @@ const uploadImg = () => {
     const formData = new FormData();
     formData.append("image", file.value);
     isUploadActive.value = true;
-    axios.post("https://api.imgbb.com/1/upload?key=45f666aa12a2edd235f9e6bf8378d22d", formData)
-    // axios.post(import.meta.env.VITE_URL_API + "/upload", formData)
+    axios
+      .post(
+        "https://api.imgbb.com/1/upload?key=45f666aa12a2edd235f9e6bf8378d22d",
+        formData
+      )
+      // axios.post(import.meta.env.VITE_URL_API + "/upload", formData)
       .then((res) => {
         dataImg.value = res.data;
         isUploadActive.value = false;
@@ -49,7 +53,7 @@ const uploadImg = () => {
     file.value = null;
     dropzoneIsActive.value = false;
   }
-}
+};
 </script>
 
 <template>
@@ -65,10 +69,10 @@ const uploadImg = () => {
       @dragleave.prevent="toggleDrag()"
       @dragover.prevent=""
       @drop.prevent="dropFile"
-      class="outline-blue-500 outline-2 outline-offset-0 rounded-xl w-full h-52 flex items-center flex-col mt-4 bg-slate-50 transition-all duration-200"
-      :class="{
-        'bg-blue-500 outline': dropzoneIsActive,
-      }, [dropzoneIsActive ? 'outline' : 'outline-dashed']"
+      class="border-blue-500 border-2 rounded-xl w-full h-52 flex items-center flex-col mt-4 transition-all duration-200"
+      :class="[
+        dropzoneIsActive ? 'border bg-blue-500' : 'border-dashed bg-slate-50',
+      ]"
     >
       <img src="../assets/image.svg" class="mt-7 mb-7" alt="" />
       <span
