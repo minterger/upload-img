@@ -74,8 +74,8 @@ const uploadImg = async () => {
     >
       <img src="../assets/image.svg" class="mt-7 mb-7" alt="" />
       <span
-        class="text-sm text-slate-500 mb-7 transition-text duration-200"
-        :class="{ 'text-white': isDropzoneActive }"
+        class="text-sm mb-7 transition-text duration-200"
+        :class="[ isDropzoneActive ? 'text-white' : 'text-slate-600' ]"
       >
         Drag & Drop your image here</span
       >
