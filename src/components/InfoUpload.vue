@@ -4,6 +4,8 @@ import { inject, ref } from "@vue/runtime-core";
 const dataImg = inject("dataImg");
 const isUploadFinished = inject("isUploadFinished");
 
+console.log(dataImg.value.data);
+
 const inputRef = ref(null);
 
 const copyButton = () => {
@@ -25,7 +27,7 @@ const copyButton = () => {
     <h1 class="text-xl mt-2 mb-2">Upload Successfully!</h1>
     <img
       class="rounded-xl w-full h-52 flex items-center flex-col mt-4 bg-slate-50 transition-all duration-200 object-cover hover:object-contain"
-      :src="dataImg.data.url"
+      :src="dataImg.data.secure_url"
     />
     <label class="w-full mt-5 relative">
       <button
