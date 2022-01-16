@@ -6,12 +6,13 @@ import { inject } from "@vue/runtime-core";
 const isUploadActive = inject("isUploadActive");
 const isUploadFinished = inject("isUploadFinished");
 const dataImg = inject("dataImg");
+const alert = inject("alert");
 
-const dropzoneIsActive = ref(false);
+const isDropzoneActive = ref(false);
 const file = ref(null);
 
 const toggleDrag = () => {
-  if (!file.value) dropzoneIsActive.value = !dropzoneIsActive.value;
+  if (!file.value) isDropzoneActive.value = !isDropzoneActive.value;
 };
 
 const uploadButtonImg = (e) => {
@@ -24,35 +25,31 @@ const dropFile = (e) => {
   if (file.value) {
     uploadImg();
   } else {
-    dropzoneIsActive.value = false;
+    isDropzoneActive.value = false;
   }
 };
 
-const uploadImg = () => {
-  if (file.value.type.match("image.*")) {
-    const formData = new FormData();
-    formData.append("image", file.value);
-    isUploadActive.value = true;
-    // axios
-    //   .post(
-    //     "https://api.imgbb.com/1/upload?key=45f666aa12a2edd235f9e6bf8378d22d",
-    //     formData
-    //   )
-    axios
-      .post(import.meta.env.VITE_URL_API + "/upload", formData)
-      .then((res) => {
-        dataImg.value = res.data;
-        isUploadActive.value = false;
-        isUploadFinished.value = true;
-      })
-      .catch((err) => {
-        console.log(err);
-        isUploadActive.value = false;
-      });
-  } else {
-    alert("File is not an image");
-    file.value = null;
-    dropzoneIsActive.value = false;
+const uploadImg = async () => {
+  const formData = new FormData();
+  formData.append("image", file.value);
+  isUploadActive.value = true;
+  isDropzoneActive.value = false;
+
+  // axios
+  //   .post(
+  //     "https://api.imgbb.com/1/upload?key=45f666aa12a2edd235f9e6bf8378d22d",
+  //     formData
+  //   )
+
+  try {
+    const res = await axios.post(import.meta.env.VITE_URL_API + "/upload", formData)
+
+    dataImg.value = res.data;
+    isUploadActive.value = false;
+    isUploadFinished.value = true;
+  } catch (error) {
+    alert.value = error.response.data;
+    isUploadActive.value = false;
   }
 };
 </script>
@@ -72,13 +69,13 @@ const uploadImg = () => {
       @drop.prevent="dropFile"
       class="border-blue-500 border-2 rounded-xl w-full h-52 flex items-center flex-col mt-4 transition-all duration-200"
       :class="[
-        dropzoneIsActive ? 'border bg-blue-500' : 'border-dashed bg-slate-50',
+        isDropzoneActive ? 'border bg-blue-500' : 'border-dashed bg-slate-50',
       ]"
     >
       <img src="../assets/image.svg" class="mt-7 mb-7" alt="" />
       <span
         class="text-sm text-slate-500 mb-7 transition-text duration-200"
-        :class="{ 'text-white': dropzoneIsActive }"
+        :class="{ 'text-white': isDropzoneActive }"
       >
         Drag & Drop your image here</span
       >
