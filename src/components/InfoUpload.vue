@@ -4,8 +4,6 @@ import { inject, ref } from "@vue/runtime-core";
 const dataImg = inject("dataImg");
 const isUploadFinished = inject("isUploadFinished");
 
-console.log(dataImg.value.data);
-
 const inputRef = ref(null);
 
 const copyButton = () => {
