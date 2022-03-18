@@ -3,8 +3,7 @@ import axios from "axios";
 import { ref } from "@vue/reactivity";
 import { inject } from "@vue/runtime-core";
 
-const isUploadActive = inject("isUploadActive");
-const isUploadFinished = inject("isUploadFinished");
+const uploadState = inject("uploadState");
 const dataImg = inject("dataImg");
 const alert = inject("alert");
 
@@ -32,8 +31,7 @@ const dropFile = (e) => {
 const uploadImg = async () => {
   const formData = new FormData();
   formData.append("image", file.value);
-  isUploadActive.value = true;
-  isDropzoneActive.value = false;
+  uploadState.value = "upload";
 
   // axios
   //   .post(
@@ -45,11 +43,10 @@ const uploadImg = async () => {
     const res = await axios.post(import.meta.env.VITE_URL_API + "/upload", formData)
 
     dataImg.value = res.data;
-    isUploadActive.value = false;
-    isUploadFinished.value = true;
+    uploadState.value = "end";
   } catch (error) {
     alert.value = error.response.data;
-    isUploadActive.value = false;
+    uploadState.value = "init";
   }
 };
 </script>

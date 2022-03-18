@@ -1,8 +1,9 @@
 <script setup>
 import { inject, ref } from "@vue/runtime-core";
 
+const uploadState = inject("uploadState");
+
 const dataImg = inject("dataImg");
-const isUploadFinished = inject("isUploadFinished");
 
 const inputRef = ref(null);
 
@@ -43,7 +44,7 @@ const copyButton = () => {
       />
     </label>
     <button
-      @click="isUploadFinished = false"
+      @click="uploadState = 'init'"
       class="rounded-xl bg-blue-600 hover:bg-blue-500 text-white py-2 px-3 fixed right-2 top-2 transition-color duration-200"
     >
       Upload other
