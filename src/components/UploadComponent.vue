@@ -84,7 +84,7 @@ const uploadImg = async () => {
     <span class="text-sm text-slate-500 mt-4 mb-4">Or</span>
     <label
       for="file"
-      class="px-3 py-2 text-sm text-white rounded-lg bg-blue-600 hover:bg-blue-500 transition-colors shadow"
+      class="cursor-pointer px-3 py-2 text-sm text-white rounded-lg bg-blue-600 hover:bg-blue-500 transition-colors shadow"
     >
       Choose a File
       <input
