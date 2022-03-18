@@ -14,7 +14,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="fixed shadow-lg bg-white rounded-xl flex items-center h-16 px-5 top-5"
+    class="fixed shadow-lg bg-white rounded-xl flex items-center h-16 px-5 top-5 z-50"
   >
     <box-icon
       name="error"

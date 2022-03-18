@@ -49,9 +49,10 @@ const copyButton = () => {
         readonly
       />
     </label>
+
     <button
       @click="uploadState = 'init'"
-      class="rounded-xl bg-blue-600 hover:bg-blue-500 text-white py-2 px-3 fixed right-2 top-2 transition-color duration-200"
+      class="rounded-xl bg-blue-600 hover:bg-blue-500 text-white py-2 px-3 fixed right-2 top-2 transition-color duration-200 z-10"
     >
       Upload other
     </button>
