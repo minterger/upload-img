@@ -2,6 +2,7 @@
 import { inject, ref } from "@vue/runtime-core";
 
 const uploadState = inject("uploadState");
+const alert = inject("alert");
 
 const dataImg = inject("dataImg");
 
@@ -10,6 +11,11 @@ const inputRef = ref(null);
 const copyButton = () => {
   inputRef.value.select();
   document.execCommand("copy");
+  alert.value = {
+    ok: true,
+    boxIcon: "clipboard",
+    message: "Link copied to clipboard",
+  };
 };
 </script>
 
@@ -25,7 +31,7 @@ const copyButton = () => {
     ></box-icon>
     <h1 class="text-xl mt-2 mb-2">Upload Successfully!</h1>
     <img
-      class="rounded-xl w-full h-52 flex items-center flex-col mt-4 bg-slate-50 transition-all duration-200 object-cover hover:object-contain"
+      class="rounded-xl w-full h-52 flex items-center flex-col mt-4 bg-slate-50 object-cover hover:object-contain"
       :src="dataImg.data.secure_url"
     />
     <label class="w-full mt-5 relative">
