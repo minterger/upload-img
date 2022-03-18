@@ -4,6 +4,7 @@ import AlertVue from "./components/Alert.vue";
 import UploadComponent from "./components/UploadComponent.vue";
 import LoadUploading from "./components/LoadUploading.vue";
 import InfoUpload from "./components/InfoUpload.vue";
+import FooterVue from "./components/Footer.vue";
 
 const uploadState = ref("init");
 const alert = ref(null);
@@ -16,7 +17,9 @@ provide("alert", alert);
 </script>
 
 <template>
-  <main class="min-h-screen bg-slate-50 flex justify-center items-center px-2">
+  <main
+    class="min-h-screen relative pb-14 bg-slate-50 flex flex-col justify-center items-center px-2"
+  >
     <transition name="fade" mode="out-in">
       <alert-vue v-if="alert" />
     </transition>
@@ -25,6 +28,7 @@ provide("alert", alert);
       <load-uploading v-else-if="uploadState === 'upload'" />
       <info-upload v-else-if="uploadState === 'end'" />
     </transition>
+    <footer-vue class="h-14"></footer-vue>
   </main>
 </template>
 
