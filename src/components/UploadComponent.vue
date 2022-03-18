@@ -40,7 +40,10 @@ const uploadImg = async () => {
   //   )
 
   try {
-    const res = await axios.post(import.meta.env.VITE_URL_API + "/upload", formData)
+    const res = await axios.post(
+      import.meta.env.VITE_URL_API + "/upload",
+      formData
+    );
 
     dataImg.value = res.data;
     uploadState.value = "end";
@@ -72,7 +75,7 @@ const uploadImg = async () => {
       <img src="../assets/image.svg" class="mt-7 mb-7" alt="" />
       <span
         class="text-sm mb-7 transition-text duration-200"
-        :class="[ isDropzoneActive ? 'text-white' : 'text-slate-600' ]"
+        :class="[isDropzoneActive ? 'text-white' : 'text-slate-600']"
       >
         Drag & Drop your image here</span
       >
